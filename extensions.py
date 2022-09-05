@@ -25,8 +25,10 @@ class CurrencyConverter:
 
         try:
             amount = float(amount)
+            if amount <= 0:
+                raise APIException(f'Проверьте правильность ввода количества валюты: {amount}')
         except ValueError:
-            raise APIException(f'Проверьте правильность ввода количества валюты {amount}')
+            raise APIException(f'Проверьте правильность ввода количества валюты: {amount}')
 
         r = requests.get(f'https://min-api.cryptocompare.com/data/price?fsym={base_ticker}&tsyms={quote_ticker}')
         total = json.loads(r.content)[keys[quote]] * amount
