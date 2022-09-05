@@ -38,7 +38,7 @@ def converter(message):
     except Exception as e:
         bot.reply_to(message, f'Не удалось обработать команду \n{e}')
     else:
-        text = f'Цена {amount} {base} в {quote} - {total}'
+        text = f'Переводим {base} в {quote}\n{amount} {keys[base]} = {total} {keys[quote]}'
         bot.send_message(message.chat.id, text)
 
 
